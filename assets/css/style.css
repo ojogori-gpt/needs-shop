@@ -1,19 +1,20 @@
 /* ==========================================================================
    Needs — セルフケアのセレクトショップ
-   色: 生成り(paper) と 藍(ink) の2色が軸。ink の面は「はじめた理由」だけ。
+   色: 生成り(paper) と Medifit の深い緑(ink) の2色が軸。ink の面は「はじめた理由」だけ。
+        緑は店舗看板から採った色。accent（看板の明るい緑寄り）は「営業中」表示だけに使う。
    書体: Zen Maru Gothic 1書体。アイコンの丸い線端と揃える。
    ========================================================================== */
 
 :root {
-  --paper: #F6F5F0;
-  --paper-2: #ECE9E1;
-  --ink: #1B2A4A;
-  --text: #2B303A;
-  --muted: #62676F;
-  --line: #D8D4CA;
-  --moss: #5F7052;
-  --on-ink: #EEF0F3;
-  --on-ink-muted: #B9C0CC;
+  --paper: #F5F6F1;
+  --paper-2: #EAECE4;
+  --ink: #1F5A3E;
+  --accent: #087A40;
+  --text: #2A302C;
+  --muted: #5E665F;
+  --line: #D5D8CE;
+  --on-ink: #F1F5F2;
+  --on-ink-muted: #BFD3C8;
 
   --font: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", sans-serif;
 
@@ -233,8 +234,8 @@ a { color: inherit; }
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(90deg, rgba(246, 245, 240, .88) 0%, rgba(246, 245, 240, .6) 48%, rgba(246, 245, 240, 0) 78%),
-                linear-gradient(0deg, rgba(246, 245, 240, .92) 0%, rgba(246, 245, 240, 0) 36%);
+    background: linear-gradient(90deg, rgba(245, 246, 241, .88) 0%, rgba(245, 246, 241, .6) 48%, rgba(245, 246, 241, 0) 78%),
+                linear-gradient(0deg, rgba(245, 246, 241, .92) 0%, rgba(245, 246, 241, 0) 36%);
   }
   .hero__body { padding-top: calc(104px + env(safe-area-inset-top, 0px)); }
   .hero__catch { align-self: start; margin: 8vh 0 0; font-size: clamp(1.875rem, 0.9rem + 4.6vw, 2.5rem); letter-spacing: 0.06em; }
@@ -399,27 +400,64 @@ a { color: inherit; }
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(40px, 6vw, 96px);
   align-items: start;
+  margin-top: clamp(48px, 6vw, 80px);
 }
 
-.salon__photos {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(8px, 1.2vw, 16px);
+/* 店舗写真のギャラリー：横スクロール。左端は本文の左端にそろえ、右は画面の端まで流す */
+.gallery {
+  --edge: max(var(--gutter), calc((100vw - 1160px) / 2 + var(--gutter)));
 }
-
-.photo {
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
+.gallery__track {
+  display: flex;
+  gap: clamp(12px, 1.6vw, 20px);
+  margin: 0;
+  padding: 0 var(--edge) 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--edge);
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.gallery__track:focus-visible { outline-offset: -2px; }
+.gallery__item { flex: none; scroll-snap-align: start; }
+.gallery__item img {
+  width: auto;
+  height: clamp(300px, 36vw, 520px);
+  /* 横長の写真がスマホの画面幅を超えないように。超える分は左右を少し切る */
+  max-width: calc(100vw - var(--gutter) * 2 - 32px);
+  object-fit: cover;
   border-radius: 4px;
   background: var(--paper-2);
 }
-/* 外観写真は縦に近い比率なので、切らずにそのまま見せる */
-.photo--main { grid-column: 1 / -1; aspect-ratio: 1170 / 1285; }
-.photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.gallery__item p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: var(--fs-sm);
 }
+
+.gallery__nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+.gallery__btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color .2s, color .2s, opacity .2s;
+}
+.gallery__btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.gallery__btn:hover:not(:disabled) { background: var(--ink); color: var(--on-ink); }
+.gallery__btn:disabled { opacity: .3; cursor: default; }
 
 .salon__points li + li { margin-top: 36px; }
 .salon__points h3 { font-size: var(--fs-md); }
@@ -439,12 +477,11 @@ a { color: inherit; }
 
 @media (max-width: 860px) {
   .salon__grid { grid-template-columns: 1fr; }
-  .salon__photos { max-width: 560px; }
-  .salon__text { max-width: var(--measure); }
+  .salon__points { max-width: var(--measure); }
 }
 
 /* --------------------------------------------------------------------------
-   はじめた理由（藍の面）
+   はじめた理由（緑の面）
    -------------------------------------------------------------------------- */
 .reason {
   padding-block: var(--section);
@@ -461,7 +498,7 @@ a { color: inherit; }
   gap: clamp(24px, 6vw, 96px);
   margin-top: clamp(56px, 8vw, 104px);
   padding-top: clamp(40px, 5vw, 64px);
-  border-top: 1px solid rgba(238, 240, 243, .22);
+  border-top: 1px solid rgba(241, 245, 242, .24);
 }
 .reason__block h3 { font-size: clamp(1.25rem, 1rem + 0.6vw, 1.5rem); line-height: 1.8; }
 .reason__block .prose { color: var(--on-ink-muted); }
@@ -629,7 +666,7 @@ a { color: inherit; }
   border: 1.5px solid currentColor;
   border-radius: 50%;
 }
-.status--open { color: var(--moss); }
+.status--open { color: var(--accent); }
 .status--open::before { background: currentColor; }
 
 @media (max-width: 620px) {
@@ -718,4 +755,12 @@ a { color: inherit; }
   .vision__list li { font-size: 1.1875rem; letter-spacing: 0.03em; }
   .verb { flex-direction: column; align-items: flex-start; padding-inline: 0; }
   .verb__text { text-align: left; }
+}
+
+.salon__map {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--ink);
+  font-size: var(--fs-sm);
+  text-underline-offset: 5px;
 }

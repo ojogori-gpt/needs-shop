@@ -158,46 +158,94 @@
         <p>パーソナルトレーニングと<wbr>疲労回復の<wbr>施術を<wbr>行う<wbr>サロンと<wbr>提携しています。<wbr>日々<wbr>お客様の<wbr>身体と<wbr>向き合う<wbr>現場の<wbr>視点が、<wbr>この<wbr>ショップの<wbr>土台です。</p>
       </header>
 
+    </div>
+
+    <!-- 店舗の写真：横にスクロールして見る。実写のみ。AI生成の写真は使わない -->
+    <!-- 写真は assets/img/salon/ に置く。足すときは <li> を1つ増やす（width/height は画像の実寸） -->
+    <div class="gallery" data-gallery>
+      <ul class="gallery__track" tabindex="0" aria-label="提携サロンの写真（横にスクロールできます）">
+        <li class="gallery__item">
+          <img src="assets/img/salon/01-entrance-salon.jpg" alt="疲労回復サロンの入口。看板と花壇" width="1200" height="1600" loading="lazy">
+          <p>疲労回復サロンの<wbr>入口</p>
+        </li>
+        <li class="gallery__item">
+          <img src="assets/img/salon/02-entrance-gym.jpg" alt="パーソナルトレーニングジムの入口" width="1477" height="1108" loading="lazy">
+          <p>パーソナルトレーニングの<wbr>入口</p>
+        </li>
+        <li class="gallery__item">
+          <img src="assets/img/salon/03-training.jpg" alt="トレーニング器具が並ぶスペース" width="1200" height="1600" loading="lazy">
+          <p>トレーニングスペース</p>
+        </li>
+        <li class="gallery__item">
+          <img src="assets/img/salon/04-treatment.jpg" alt="施術用のベッドとついたて" width="1200" height="1600" loading="lazy">
+          <p>施術スペース</p>
+        </li>
+        <li class="gallery__item">
+          <img src="assets/img/salon/05-treatment.jpg" alt="窓のある明るい施術スペース" width="1200" height="1600" loading="lazy">
+          <p>施術スペース</p>
+        </li>
+      </ul>
+      <div class="gallery__nav wrap">
+        <button type="button" class="gallery__btn" data-dir="-1" aria-label="前の写真">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+        </button>
+        <button type="button" class="gallery__btn" data-dir="1" aria-label="次の写真">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="wrap">
       <div class="salon__grid">
-        <!-- 実写のみ。AI生成の写真は使わない -->
-        <div class="salon__photos">
-          <figure class="photo photo--main">
-            <img src="assets/img/medifit.jpg" alt="提携サロンの外観。「疲労回復サロン」の看板と入口" width="1170" height="1285" loading="lazy">
-          </figure>
-          <!-- 店内・施術の写真が届いたら、下のコメントを外してファイル名を合わせる（2点とも横位置を想定）
-          <figure class="photo">
-            <img src="assets/img/salon-interior.jpg" alt="提携サロンの店内" width="1200" height="800" loading="lazy">
-          </figure>
-          <figure class="photo">
-            <img src="assets/img/salon-treatment.jpg" alt="提携サロンでの施術の様子" width="1200" height="800" loading="lazy">
-          </figure>
-          -->
-        </div>
+        <ul class="salon__points">
+          <li>
+            <h3>商品選びに、<wbr>専門家が<wbr>関わっています</h3>
+            <p>トレーナー・<wbr>セラピストが、<wbr>日々の<wbr>施術や<wbr>トレーニングで<wbr>感じている<wbr>ことを<wbr>もとに、<wbr>ショップで<wbr>扱う<wbr>商品選びに<wbr>関わっています。</p>
+          </li>
+          <li>
+            <!-- TODO: 確認 店舗で試せる・買えるのは全商品か一部か -->
+            <h3>店舗でも、<wbr>試して<wbr>選べます</h3>
+            <p>サロンでは、<wbr>ショップで<wbr>扱う<wbr>商品を<wbr>実際に<wbr>手に<wbr>取って<wbr>試したり、<wbr>購入したりできます。</p>
+          </li>
+        </ul>
 
-        <div class="salon__text">
-          <ul class="salon__points">
-            <li>
-              <h3>商品選びに、<wbr>専門家が<wbr>関わっています</h3>
-              <p>トレーナー・<wbr>セラピストが、<wbr>日々の<wbr>施術や<wbr>トレーニングで<wbr>感じている<wbr>ことを<wbr>もとに、<wbr>ショップで<wbr>扱う<wbr>商品選びに<wbr>関わっています。</p>
-            </li>
-            <li>
-              <!-- TODO: 確認 店舗で試せる・買えるのは全商品か一部か -->
-              <h3>店舗でも、<wbr>試して<wbr>選べます</h3>
-              <p>サロンでは、<wbr>ショップで<wbr>扱う<wbr>商品を<wbr>実際に<wbr>手に<wbr>取って<wbr>試したり、<wbr>購入したりできます。</p>
-            </li>
-          </ul>
-
-          <!-- TODO: 差し替え 店舗情報を確定値に -->
-          <dl class="salon__info">
-            <div><dt>店名</dt><dd class="tbd">確定後に<wbr>掲載</dd></div>
-            <div><dt>所在地</dt><dd class="tbd">確定後に<wbr>掲載</dd></div>
-            <div><dt>営業時間</dt><dd class="tbd">確定後に<wbr>掲載</dd></div>
-            <div><dt>メニュー</dt><dd>パーソナルトレーニング／疲労回復の<wbr>施術</dd></div>
-          </dl>
-        </div>
+        <dl class="salon__info">
+          <div><dt>店名</dt><dd>疲労回復サロンMedifit</dd></div>
+          <div><dt>所在地</dt><dd>〒849-0922<br>佐賀県佐賀市高木瀬東2丁目15-2 102号<br><a class="salon__map" href="https://www.google.com/maps/search/?api=1&amp;query=%E4%BD%90%E8%B3%80%E7%9C%8C%E4%BD%90%E8%B3%80%E5%B8%82%E9%AB%98%E6%9C%A8%E7%80%AC%E6%9D%B12%E4%B8%81%E7%9B%AE15-2" target="_blank" rel="noopener">地図を<wbr>開く<wbr>（Googleマップ）</a></dd></div>
+          <div><dt>営業時間</dt><dd>9:00〜17:00</dd></div>
+          <div><dt>定休日</dt><dd>不定休</dd></div>
+          <div><dt>予約</dt><dd>完全予<wbr>約制</dd></div>
+          <div><dt>メニュー</dt><dd>パーソナルトレーニング／疲労回復の<wbr>施術</dd></div>
+        </dl>
       </div>
     </div>
   </section>
+
+  <script>
+    // 前後ボタンで1枚ずつ送る。端まで来たらボタンを無効にする
+    document.querySelectorAll("[data-gallery]").forEach(function (gallery) {
+      var track = gallery.querySelector(".gallery__track");
+      var buttons = gallery.querySelectorAll(".gallery__btn");
+      function step() {
+        var item = track.querySelector(".gallery__item");
+        var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return item ? item.getBoundingClientRect().width + gap : track.clientWidth;
+      }
+      function update() {
+        var max = track.scrollWidth - track.clientWidth - 2;
+        buttons[0].disabled = track.scrollLeft <= 2;
+        buttons[1].disabled = track.scrollLeft >= max;
+      }
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          track.scrollBy({ left: step() * Number(btn.dataset.dir), behavior: "smooth" });
+        });
+      });
+      track.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    });
+  </script>
 
   <!-- はじめた理由 -->
   <section id="reason" class="reason" aria-labelledby="reason-title">
